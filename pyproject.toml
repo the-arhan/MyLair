@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mylair"
+version = "0.1.0"
+description = "A friendly, retro command-line game launcher for terminal warriors."
+readme = "README.md"
+authors = [
+    { name = "Arhan Ali" }
+]
+license = { text = "MIT" }
+requires-python = ">=3.8"
+dependencies = []
+keywords = ["games", "terminal", "cli", "ascii-art", "retro"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Games/Entertainment",
+]
+
+[project.scripts]
+mylair = "mylair.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
