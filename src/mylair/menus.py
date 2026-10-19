@@ -114,75 +114,36 @@ def show_help_screen(title_style: str, color_scheme: str) -> None:
 
 def settings_menu(current_settings: Dict[str, str]) -> Dict[str, str]:
     """
-    Submenu for customizing Title Styles and Color Schemes.
+    Submenu for customizing My Lair appearance and color schemes.
     Allows testing and instant saving of settings.
     """
     while True:
-        title_style = current_settings.get("title_style", "slant")
-        color_scheme = current_settings.get("color_scheme", "neon_cyan")
+        title_style = current_settings.get("title_style", "official")
+        color_scheme = current_settings.get("color_scheme", "synthwave")
 
         clear_screen()
         print_header(title_style, color_scheme, subtitle="Settings & Appearance")
 
-        curr_theme_obj = THEMES.get(color_scheme, THEMES["neon_cyan"])
-        print(f"Current Title Style: {style_text(title_style.capitalize(), color_scheme, color_type='accent', bold=True)}")
-        print(f"Current Color Theme: {style_text(curr_theme_obj.display_name, color_scheme, color_type='accent', bold=True)}\n")
+        curr_theme_obj = THEMES.get(color_scheme, THEMES["synthwave"])
+        print(f"Official Logo:  {style_text('Active (Exclusive Retro Shaded Block Art)', color_scheme, color_type='accent', bold=True)}")
+        print(f"Current Theme:  {style_text(curr_theme_obj.display_name, color_scheme, color_type='accent', bold=True)}\n")
 
-        print("1. Change Title Style (ASCII Art)")
-        print("2. Change Color Scheme (Theme Palette)")
-        print("3. Reset Settings to Default")
-        print("4. Back to Main Menu")
-        print("5. Quit My Lair\n")
+        print("1. Change Color Theme (Theme Palette)")
+        print("2. Reset Settings to Default")
+        print("3. Back to Main Menu")
+        print("4. Quit My Lair\n")
         print_divider(color_scheme)
 
-        action = prompt_input("Enter choice [1-5]: ", color_scheme=color_scheme, allow_back=True, allow_quit=True)
+        action = prompt_input("Enter choice [1-4]: ", color_scheme=color_scheme, allow_back=True, allow_quit=True)
 
-        if action in (NavigationAction.QUIT, "5"):
+        if action in (NavigationAction.QUIT, "4"):
             show_exit_countdown(seconds=3, color_scheme=color_scheme, farewell_message="Exiting My Lair. Goodbye!")
             sys.exit(0)
 
-        if action in (NavigationAction.BACK, "4"):
+        if action in (NavigationAction.BACK, "3"):
             break
 
         if action == "1":
-            # Change Title Style
-            while True:
-                clear_screen()
-                print_header(title_style, color_scheme, subtitle="Select Title Style")
-                print("Available ASCII Title Styles:\n")
-                for idx, style_key in enumerate(VALID_TITLE_STYLES, start=1):
-                    marker = " (Active)" if style_key == title_style else ""
-                    print(f"{idx}. {style_key.capitalize()}{marker}")
-                print(f"{len(VALID_TITLE_STYLES) + 1}. Cancel / Back\n")
-                print_divider(color_scheme)
-
-                choice_act = prompt_input(
-                    f"Select style [1-{len(VALID_TITLE_STYLES) + 1}]: ",
-                    color_scheme=color_scheme,
-                    allow_back=True,
-                    allow_quit=True,
-                )
-                if choice_act in (NavigationAction.QUIT, NavigationAction.BACK, str(len(VALID_TITLE_STYLES) + 1)):
-                    break
-
-                try:
-                    chosen_idx = int(str(choice_act).strip()) - 1
-                    if 0 <= chosen_idx < len(VALID_TITLE_STYLES):
-                        new_style = VALID_TITLE_STYLES[chosen_idx]
-                        current_settings["title_style"] = new_style
-                        save_settings(current_settings)
-                        title_style = new_style
-                        print(style_text(f"\nTitle style updated to '{new_style.capitalize()}'!", color_scheme, color_type="success"))
-                        time.sleep(0.8)
-                        break
-                    else:
-                        print(style_text("Invalid selection number.", color_scheme, color_type="warning"))
-                        time.sleep(0.8)
-                except ValueError:
-                    print(style_text("Please enter a valid number.", color_scheme, color_type="warning"))
-                    time.sleep(0.8)
-
-        elif action == "2":
             # Change Color Scheme
             while True:
                 clear_screen()
@@ -223,16 +184,16 @@ def settings_menu(current_settings: Dict[str, str]) -> Dict[str, str]:
                     print(style_text("Please enter a valid number.", color_scheme, color_type="warning"))
                     time.sleep(0.8)
 
-        elif action == "3":
+        elif action == "2":
             # Reset to defaults
-            current_settings["title_style"] = "slant"
-            current_settings["color_scheme"] = "neon_cyan"
+            current_settings["title_style"] = "official"
+            current_settings["color_scheme"] = "synthwave"
             save_settings(current_settings)
             print(style_text("\nSettings successfully reset to defaults!", color_scheme, color_type="success"))
             time.sleep(0.8)
 
         else:
-            print(style_text("Invalid selection. Please choose an option from 1 to 5.", color_scheme, color_type="warning"))
+            print(style_text("Invalid selection. Please choose an option from 1 to 4.", color_scheme, color_type="warning"))
             time.sleep(1.0)
 
     return current_settings
@@ -322,8 +283,8 @@ def main_menu() -> None:
     settings = load_settings()
 
     while True:
-        title_style = settings.get("title_style", "slant")
-        color_scheme = settings.get("color_scheme", "neon_cyan")
+        title_style = settings.get("title_style", "official")
+        color_scheme = settings.get("color_scheme", "synthwave")
 
         clear_screen()
         print_header(title_style, color_scheme, subtitle="Main Menu")

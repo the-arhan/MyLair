@@ -36,14 +36,14 @@ class TestSettings(unittest.TestCase):
     def test_save_and_reload_settings(self):
         """Saving custom settings and reloading them should retain the values."""
         new_settings = {
-            "title_style": "block",
+            "title_style": "official",
             "color_scheme": "retro_green",
         }
         success = save_settings(new_settings, custom_path=self.temp_path)
         self.assertTrue(success)
 
         loaded = load_settings(custom_path=self.temp_path)
-        self.assertEqual(loaded["title_style"], "block")
+        self.assertEqual(loaded["title_style"], "official")
         self.assertEqual(loaded["color_scheme"], "retro_green")
 
     def test_validate_settings_invalid_values(self):

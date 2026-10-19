@@ -84,13 +84,16 @@ class ColorPalette:
 
 
 THEMES: Dict[str, ColorPalette] = {
-    "neon_cyan": ColorPalette(
-        name="neon_cyan",
-        display_name="Neon Cyan (Default)",
-        start_rgb=(0, 245, 255),
-        end_rgb=(180, 70, 255),
-        accent_rgb=(0, 245, 255),
-        text_rgb=(230, 245, 255),
+    "synthwave": ColorPalette(
+        name="synthwave",
+        display_name="Synthwave Magenta (Official)",
+        start_rgb=(255, 45, 185),    # Vibrant Magenta (\033[0;35m, \033[0;95m)
+        end_rgb=(0, 230, 255),       # Electric Cyan (\033[46m)
+        accent_rgb=(255, 60, 215),   # Bright Magenta accent
+        text_rgb=(245, 245, 255),    # Crisp White text (\033[0;97m)
+        success_rgb=(0, 255, 175),   # Neon Mint/Cyan
+        warning_rgb=(255, 205, 50),  # Bright Gold
+        error_rgb=(255, 60, 110),    # Neon Coral/Red
     ),
     "retro_green": ColorPalette(
         name="retro_green",
@@ -110,11 +113,11 @@ THEMES: Dict[str, ColorPalette] = {
     ),
     "cyber_purple": ColorPalette(
         name="cyber_purple",
-        display_name="Cyberpunk Magenta",
-        start_rgb=(255, 50, 180),
-        end_rgb=(110, 50, 255),
-        accent_rgb=(255, 110, 220),
-        text_rgb=(250, 225, 255),
+        display_name="Cyberpunk Violet",
+        start_rgb=(180, 40, 255),
+        end_rgb=(70, 30, 230),
+        accent_rgb=(200, 80, 255),
+        text_rgb=(240, 230, 255),
     ),
     "ocean_blue": ColorPalette(
         name="ocean_blue",
@@ -145,7 +148,7 @@ def rgb_to_ansi(r: int, g: int, b: int) -> str:
     return f"\033[38;2;{r};{g};{b}m"
 
 
-def colorize(text: str, rgb: Tuple[int, int, int], scheme_name: str = "neon_cyan") -> str:
+def colorize(text: str, rgb: Tuple[int, int, int], scheme_name: str = "synthwave") -> str:
     """Apply RGB color to text if colors are supported and enabled."""
     if scheme_name == "no_color" or not supports_color():
         return text
@@ -157,7 +160,7 @@ def style_text(text: str, scheme_name: str, color_type: str = "text", bold: bool
     if scheme_name == "no_color" or not supports_color():
         return text
 
-    palette = THEMES.get(scheme_name, THEMES["neon_cyan"])
+    palette = THEMES.get(scheme_name, THEMES["synthwave"])
     if color_type == "accent":
         code = rgb_to_ansi(*palette.accent_rgb)
     elif color_type == "start":
@@ -178,67 +181,69 @@ def style_text(text: str, scheme_name: str, color_type: str = "text", bold: bool
 
 
 # ==============================================================================
-# ASCII ART TITLE STYLES
+# OFFICIAL MY LAIR RETRO SHADED ASCII LOGO
+# (Official and only logo for My Lair)
 # ==============================================================================
 
+OFFICIAL_LOGO_COLORED: List[str] = [
+    "\033[0;37m \033[0;35m▄▄▄▄▄\033[0;37m \033[0;35m▄▄▄▄▄\033[0;37m  \033[0;35m▄▄▄▄▄\033[0;37m \033[0;35m▄▄▄▄▄\033[0;37m  \033[0;35m▄▄▄▄\033[0;37m        \033[0;35m▄▄▄▄▄▄▄▄▄\033[0;37m  \033[0;35m▄▄▄▄▄\033[0;37m \033[0;35m▄▄▄▄▄▄▄▄▄▄\033[0;37m \033[0m",
+    "\033[0;35m█\033[0;97;47m▄\033[0;97;46m███\033[0;97m█\033[0;97;45m▄\033[0;97;46m████\033[0;97;47m▄\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m███\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m███\033[0;35m█\033[0;37m \033[0;35m█\033[0;97m█\033[0;97;46m██\033[0;35m█\033[0;37m       \033[0;35m█\033[0;97;47m▄\033[0;97;46m███████\033[0;97;47m▄\033[0;35m█\033[0;37m \033[0;35m█\033[0;97m███\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m████████\033[0;97;47m▄\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;97;46m▓▓▓▓▓▓▓▓▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▓▓▓\033[0;35m█\033[0;37m       \033[0;35m█\033[0;97;46m▓▓▓▓▓▓▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▓▓▓▓▓▓▓▓▓\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;37m       \033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█▀█\033[0;97;46m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;37;45m▄▄▄\033[0;35m█▀█\033[0;97;46m▒▒▒\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;97;46m░░░\033[0;35m█\033[0;97;46m░░░\033[0;35m█\033[0;97;46m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m░░░\033[0;35m█▄█\033[0;97;46m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m░░░\033[0;35m█\033[0;37m       \033[0;35m█\033[0;97;46m░░░\033[0;35m█▄█\033[0;97;46m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;97;46m░░░\033[0;35m█▄█\033[0;97;46m░░░\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;95;47m░░░\033[0;35m█▀▀▀█\033[0;95;47m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;37;45m▀▀▀▀▀▀\033[0;95;47m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m░░░\033[0;35m█\033[0;37m \033[0;35m▄▄▄▄▄\033[0;37m \033[0;35m█\033[0;95;47m░░░░░░░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m░░░\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m░░░\033[0;37;45m▀▀▀\033[0;95;47m░░\033[0;37;45m▄\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█\033[0;37m   \033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█▄█\033[0;95;47m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█▄█\033[0;95;47m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▒▒▒▒▒▒▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▒▒▒\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;95;47m▓▓▓\033[0;35m█\033[0;37m   \033[0;35m█\033[0;95;47m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▓▓▓▓▓▓▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▓▓▓▓▓▓▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▓▓▓\033[0;35m█▀█\033[0;95;47m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▓▓▓\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m▓▓▓\033[0;35m█\033[0m",
+    "\033[0;35m█\033[0;95m█\033[0;95;47m█\033[0;95m█\033[0;35m█\033[0;37m   \033[0;35m█\033[0;95;47m██\033[0;95m█\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m████████\033[0;95m█\033[0;35m█\033[0;37m \033[0;35m█\033[0;95m█\033[0;95;47m██\033[0;95m██████\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m███\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m███\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m███\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m██\033[0;95m█\033[0;35m█\033[0;37m \033[0;35m█\033[0;95;47m██\033[0;95m█\033[0;35m█\033[0m",
+    "\033[0;37m \033[0;35m▀▀▀▀\033[0;37m   \033[0;35m▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀▀▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀▀▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀\033[0;37m \033[0;35m▀▀▀▀▀\033[0m",
+]
+
+OFFICIAL_LOGO_PLAIN: List[str] = [
+    " ▄▄▄▄▄ ▄▄▄▄▄  ▄▄▄▄▄ ▄▄▄▄▄  ▄▄▄▄        ▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄ ",
+    "█▄████▄████▄█ █████ █████ █████       █▄███████▄█ █████ █████████▄█",
+    "█▓▓▓▓▓▓▓▓▓▓▓█ █▓▓▓█ █▓▓▓█ █▓▓▓█       █▓▓▓▓▓▓▓▓▓█ █▓▓▓█ █▓▓▓▓▓▓▓▓▓█",
+    "█▒▒▒█▒▒▒█▒▒▒█ █▒▒▒█ █▒▒▒█ █▒▒▒█       █▒▒▒█▀█▒▒▒█ █▒▒▒█ █▄▄▄█▀█▒▒▒█",
+    "█░░░█░░░█░░░█ █░░░█▄█░░░█ █░░░█       █░░░█▄█░░░█ █░░░█ █░░░█▄█░░░█",
+    "█░░░█▀▀▀█░░░█ █▀▀▀▀▀▀░░░█ █░░░█ ▄▄▄▄▄ █░░░░░░░░░█ █░░░█ █░░░▀▀▀░░▄█",
+    "█▒▒▒█   █▒▒▒█ █▒▒▒█▄█▒▒▒█ █▒▒▒█▄█▒▒▒█ █▒▒▒▒▒▒▒▒▒█ █▒▒▒█ █▒▒▒█ █▒▒▒█",
+    "█▓▓▓█   █▓▓▓█ █▓▓▓▓▓▓▓▓▓█ █▓▓▓▓▓▓▓▓▓█ █▓▓▓█▀█▓▓▓█ █▓▓▓█ █▓▓▓█ █▓▓▓█",
+    "█████   █████ ███████████ ███████████ █████ █████ █████ █████ █████",
+    " ▀▀▀▀   ▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀",
+]
+
 ASCII_TITLES: Dict[str, List[str]] = {
-    "slant": [
-        r"    __  ____  __   __    ___    ____ ____ ",
-        r"   /  |/  /\ \/ /  / /   /   |  /  _// __ " + "\\",
-        r"  / /|_/ /  \  /  / /   / /| |  / / / /_/ /",
-        r" / /  / /   / /  / /___/ ___ |_/ / / _, _/ ",
-        r"/_/  /_/   /_/  /_____/_/  |_/___//_/ |_|  ",
-    ],
-    "block": [
-        r"███    ███ ██    ██     ██       █████  ██ ██████  ",
-        r"████  ████  ██  ██      ██      ██   ██ ██ ██   ██ ",
-        r"██ ████ ██   ████       ██      ███████ ██ ██████  ",
-        r"██  ██  ██    ██        ██      ██   ██ ██ ██   ██ ",
-        r"██      ██    ██        ███████ ██   ██ ██ ██   ██ ",
-    ],
-    "banner": [
-        r"#     # #     #       #          #    ### ######  ",
-        r"##   ##  #   #        #         # #    #  #     # ",
-        r"# # # #   # #         #        #   #   #  #     # ",
-        r"#  #  #    #          #       #     #  #  ######  ",
-        r"#     #    #          #       #######  #  #   #   ",
-        r"#     #    #          #       #     #  #  #    #  ",
-        r"#     #    #          ####### #     # ### #     # ",
-    ],
-    "cyber": [
-        r" __  __ _   _   _        _    ___ ____  ",
-        r"|  \/  | | | | | |      / \  |_ _|  _ \ ",
-        r"| |\/| | |_| | | |     / _ \  | || |_) |",
-        r"| |  | |\_  /  | |___ / ___ \ | ||  _ < ",
-        r"|_|  |_|  |_|  |_____/_/   \_\___|_| " + "\\_\\",
-    ],
+    "official": OFFICIAL_LOGO_PLAIN,
 }
 
 
-def render_title_gradient(style: str = "slant", scheme: str = "neon_cyan") -> str:
+def render_title_gradient(style: str = "official", scheme: str = "synthwave") -> str:
     """
-    Render the MY LAIR ASCII title.
-    If color is enabled, applies a vertical RGB color gradient across the lines.
+    Render the official MY LAIR retro shaded block logo.
+    If scheme is 'synthwave' (the official primary palette), uses the authentic
+    multi-colored ANSI block shading.
+    If scheme is 'no_color' or colors are not supported, renders the clean plain text logo.
+    Otherwise, applies the selected theme's vertical gradient across the official logo.
     """
-    lines = ASCII_TITLES.get(style, ASCII_TITLES["slant"])
-
     if scheme == "no_color" or not supports_color():
-        return "\n".join(lines)
+        return "\n".join(OFFICIAL_LOGO_PLAIN)
 
-    palette = THEMES.get(scheme, THEMES["neon_cyan"])
+    if scheme == "synthwave":
+        return "\n".join(OFFICIAL_LOGO_COLORED)
+
+    # User selected an alternative theme (e.g. retro_green, sunset_amber)
+    palette = THEMES.get(scheme, THEMES["synthwave"])
     r1, g1, b1 = palette.start_rgb
     r2, g2, b2 = palette.end_rgb
 
-    num_lines = max(len(lines) - 1, 1)
+    num_lines = max(len(OFFICIAL_LOGO_PLAIN) - 1, 1)
     colored_lines: List[str] = []
 
-    for i, line in enumerate(lines):
+    for i, line in enumerate(OFFICIAL_LOGO_PLAIN):
         fraction = i / num_lines
         curr_r = int(r1 + (r2 - r1) * fraction)
         curr_g = int(g1 + (g2 - g1) * fraction)
         curr_b = int(b1 + (b2 - b1) * fraction)
-        colored_line = f"{BOLD}{rgb_to_ansi(curr_r, curr_g, curr_b)}{line}{RESET}"
-        colored_lines.append(colored_line)
+        colored_lines.append(f"{BOLD}{rgb_to_ansi(curr_r, curr_g, curr_b)}{line}{RESET}")
 
     return "\n".join(colored_lines)
 
@@ -274,12 +279,12 @@ def get_terminal_width(default: int = 70) -> int:
         return default
 
 
-def print_divider(scheme: str = "neon_cyan", char: str = "─") -> None:
-    """Print an adaptive horizontal divider line."""
-    width = min(get_terminal_width(), 65)
+def print_divider(scheme: str = "synthwave", char: str = "─") -> None:
+    """Print an adaptive horizontal divider line matching the official logo width."""
+    width = max(min(get_terminal_width(), 66), 66)
     line = char * width
     if scheme != "no_color" and supports_color():
-        palette = THEMES.get(scheme, THEMES["neon_cyan"])
+        palette = THEMES.get(scheme, THEMES["synthwave"])
         print(f"{DIM}{rgb_to_ansi(*palette.accent_rgb)}{line}{RESET}")
     else:
         print(line)
@@ -301,7 +306,7 @@ def print_header(title_style: str, color_scheme: str, subtitle: Optional[str] = 
 
 def prompt_input(
     prompt_msg: str = "Select an option: ",
-    color_scheme: str = "neon_cyan",
+    color_scheme: str = "synthwave",
     allow_back: bool = True,
     allow_quit: bool = True,
 ) -> str | NavigationAction:
@@ -330,7 +335,7 @@ def prompt_input(
     return raw
 
 
-def pause_prompt(color_scheme: str = "neon_cyan", msg: str = "Press Enter to return...") -> None:
+def pause_prompt(color_scheme: str = "synthwave", msg: str = "Press Enter to return...") -> None:
     """Pause execution until the user presses Enter."""
     styled_msg = style_text(f"\n{msg}", color_scheme, color_type="accent")
     try:
@@ -341,7 +346,7 @@ def pause_prompt(color_scheme: str = "neon_cyan", msg: str = "Press Enter to ret
 
 def show_exit_countdown(
     seconds: int = 3,
-    color_scheme: str = "neon_cyan",
+    color_scheme: str = "synthwave",
     farewell_message: str = "Thank you for visiting My Lair. Happy coding!",
 ) -> None:
     """

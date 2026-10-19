@@ -74,8 +74,8 @@ def run_direct_game(game_query: str) -> int:
         return 1
 
     settings = load_settings()
-    title_style = settings.get("title_style", "slant")
-    color_scheme = settings.get("color_scheme", "neon_cyan")
+    title_style = settings.get("title_style", "official")
+    color_scheme = settings.get("color_scheme", "synthwave")
 
     # Run the game in direct mode
     continued = descriptor.runner(title_style, color_scheme, True)

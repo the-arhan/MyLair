@@ -1,11 +1,16 @@
 # My Lair (mylair)
 
 ```text
-    __  ____  __   __    ___    ____ ____ 
-   /  |/  /\ \/ /  / /   /   |  /  _// __ \
-  / /|_/ /  \  /  / /   / /| |  / / / /_/ /
- / /  / /   / /  / /___/ ___ |_/ / / _, _/ 
-/_/  /_/   /_/  /_____/_/  |_/___//_/ |_|  
+ ▄▄▄▄▄ ▄▄▄▄▄  ▄▄▄▄▄ ▄▄▄▄▄  ▄▄▄▄        ▄▄▄▄▄▄▄▄▄  ▄▄▄▄▄ ▄▄▄▄▄▄▄▄▄▄ 
+█▄████▄████▄█ █████ █████ █████       █▄███████▄█ █████ █████████▄█
+█▓▓▓▓▓▓▓▓▓▓▓█ █▓▓▓█ █▓▓▓█ █▓▓▓█       █▓▓▓▓▓▓▓▓▓█ █▓▓▓█ █▓▓▓▓▓▓▓▓▓█
+█▒▒▒█▒▒▒█▒▒▒█ █▒▒▒█ █▒▒▒█ █▒▒▒█       █▒▒▒█▀█▒▒▒█ █▒▒▒█ █▄▄▄█▀█▒▒▒█
+█░░░█░░░█░░░█ █░░░█▄█░░░█ █░░░█       █░░░█▄█░░░█ █░░░█ █░░░█▄█░░░█
+█░░░█▀▀▀█░░░█ █▀▀▀▀▀▀░░░█ █░░░█ ▄▄▄▄▄ █░░░░░░░░░█ █░░░█ █░░░▀▀▀░░▄█
+█▒▒▒█   █▒▒▒█ █▒▒▒█▄█▒▒▒█ █▒▒▒█▄█▒▒▒█ █▒▒▒▒▒▒▒▒▒█ █▒▒▒█ █▒▒▒█ █▒▒▒█
+█▓▓▓█   █▓▓▓█ █▓▓▓▓▓▓▓▓▓█ █▓▓▓▓▓▓▓▓▓█ █▓▓▓█▀█▓▓▓█ █▓▓▓█ █▓▓▓█ █▓▓▓█
+█████   █████ ███████████ ███████████ █████ █████ █████ █████ █████
+ ▀▀▀▀   ▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀▀▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀ ▀▀▀▀▀
 ```
 
 A friendly, retro-styled command-line game launcher built for developers and terminal warriors who need quick, fun, distraction-free breaks during lengthy coding sessions.
@@ -151,17 +156,12 @@ Example usage: mylair -s rockpaperscissor  or  mylair -s rps
 
 My Lair allows customizing your terminal experience:
 
-1. **Title Styles**: Choose from 4 built-in ASCII art titles:
-   - `slant`: Modern 3D angled letters (Default).
-   - `block`: Bold, solid block characters.
-   - `banner`: Classic arcade-style banner font.
-   - `cyber`: Futuristic condensed font.
-
+1. **Official Logo**: The exclusive retro shaded block ASCII banner (`MY LAIR`) is the official and only logo.
 2. **Color Schemes**: Choose from multiple curated themes:
-   - `neon_cyan`: Radiant cyan with violet accents (Default).
+   - `synthwave`: Synthwave Magenta & Electric Cyan (Official Primary Theme).
    - `retro_green`: Classic terminal green (Matrix style).
    - `sunset_amber`: Warm golden amber with fiery red accents.
-   - `cyber_purple`: Synthwave magenta and neon violet.
+   - `cyber_purple`: Cyberpunk neon violet.
    - `ocean_blue`: Crisp marine blue and bright sky cyan.
    - `no_color`: Plain monochrome text (ideal for strict minimalists or simple terminals).
 

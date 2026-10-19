@@ -26,14 +26,11 @@ from typing import Any, Dict
 # ==============================================================================
 
 VALID_TITLE_STYLES = (
-    "slant",   # Modern angled 3D ASCII letters
-    "block",   # Bold, solid block ASCII art
-    "banner",  # Classic wide arcade banner font
-    "cyber",   # Sleek, futuristic condensed font
+    "official",  # The official and only My Lair retro shaded block logo
 )
 
 VALID_COLOR_SCHEMES = (
-    "neon_cyan",     # Radiant cyan with purple accents
+    "synthwave",     # Official Synthwave Magenta & Cyan (primary signature theme)
     "retro_green",   # Classic terminal matrix green
     "sunset_amber",  # Warm golden amber and deep red
     "cyber_purple",  # Synthwave magenta and violet
@@ -43,8 +40,8 @@ VALID_COLOR_SCHEMES = (
 
 # Default configuration applied on fresh installs or corrupted configs
 DEFAULT_SETTINGS: Dict[str, str] = {
-    "title_style": "slant",
-    "color_scheme": "neon_cyan",
+    "title_style": "official",
+    "color_scheme": "synthwave",
 }
 
 
@@ -100,9 +97,13 @@ def validate_settings(data: Any) -> Dict[str, str]:
     title_style = data.get("title_style")
     if isinstance(title_style, str) and title_style in VALID_TITLE_STYLES:
         validated["title_style"] = title_style
+    else:
+        validated["title_style"] = "official"
 
     color_scheme = data.get("color_scheme")
-    if isinstance(color_scheme, str) and color_scheme in VALID_COLOR_SCHEMES:
+    if color_scheme == "neon_cyan":
+        validated["color_scheme"] = "synthwave"
+    elif isinstance(color_scheme, str) and color_scheme in VALID_COLOR_SCHEMES:
         validated["color_scheme"] = color_scheme
 
     return validated
