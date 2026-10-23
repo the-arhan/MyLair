@@ -78,9 +78,20 @@ def show_help_screen(title_style: str, color_scheme: str) -> None:
     print("  mylair --help              View command-line help flags.")
     print("  mylair help                Display general usage information.\n")
     print("  Examples of direct launch:")
-    print("    mylair -s rockpaperscissor  (or 'rps')")
-    print("    mylair -s firsttofifty      (or 'f2f')")
-    print("    mylair -s guessthenumber    (or 'gtn')\n")
+    print("    mylair -s rps              (Rock Paper Scissors Plus)")
+    print("    mylair -s f2f              (First to Fifty)")
+    print("    mylair -s gtn              (Guess the Number)")
+    print("    mylair -s oddoreven        (Odd or Even)")
+    print("    mylair -s coin             (Coin Flip Streak)")
+    print("    mylair -s higher           (Higher or Lower)")
+    print("    mylair -s math             (Quick Math)")
+    print("    mylair -s dice             (Dice Duel)")
+    print("    mylair -s lock             (Number Lock)")
+    print("    mylair -s scramble         (Word Scramble)")
+    print("    mylair -s takethelast      (Take the Last)")
+    print("    mylair -s fortune          (Fortune Cookie)")
+    print("    mylair -s 8ball            (The 8 Ball)")
+    print("    mylair -s doom             (The Lair's Doom)\n")
 
     print_divider(color_scheme)
     print(style_text("NAVIGATION & SHORTCUTS", color_scheme, color_type="accent", bold=True))
@@ -92,16 +103,42 @@ def show_help_screen(title_style: str, color_scheme: str) -> None:
 
     print_divider(color_scheme)
     print(style_text("GAME RULES", color_scheme, color_type="accent", bold=True))
-    print("  1. Rock Paper Scissors:")
-    print("     Duel the computer. Accepts 'rock', 'paper', 'scissors', or 'r', 'p', 's'.")
-    print("     Rock beats Scissors, Scissors beats Paper, Paper beats Rock.\n")
-    print("  2. First to Fifty:")
+    print("  1. Rock Paper Scissors Plus (rps, rpsplus):")
+    print("     5-way expanded duel: Rock crushes Scissors/Lizard, Paper covers Rock/disproves Spock,")
+    print("     Scissors cuts Paper/decapitates Lizard, Lizard poisons Spock/eats Paper,")
+    print("     Spock smashes Scissors/vaporizes Rock. (Shortcuts: r, p, s, l, k).\n")
+    print("  2. First to Fifty (f2f):")
     print("     Turn-based race to 50 starting from 0. On your turn, add any integer")
     print("     from 1 to 10. The first player to reach or exceed 50 wins!\n")
-    print("  3. Guess the Number:")
+    print("  3. Guess the Number (gtn):")
     print("     The computer picks a secret number from 1 to 100. Enter guesses to")
-    print("     receive 'Too high' or 'Too low' clues and dynamic search range hints.")
-    print("     Try to solve it in 7 or fewer guesses!\n")
+    print("     receive 'Too high' or 'Too low' clues and dynamic search range hints.\n")
+    print("  4. Odd or Even (oddoreven, ooe):")
+    print("     Predict whether the sum will be Odd (o) or Even (e). Both pick a number (1-5).")
+    print("     If the sum's parity matches your prediction, you win!\n")
+    print("  5. Coin Flip Streak (coinflipstreak, cfs, coin):")
+    print("     Predict Heads (h) or Tails (t). Correct calls grow your streak. Choose to")
+    print("     continue or bank your score. An incorrect call resets your streak to 0!\n")
+    print("  6. Higher or Lower (higherorlower, hol, higher):")
+    print("     Forecast whether the next number (1-50) will be Higher (h) or Lower (l).")
+    print("     Equal numbers count as a push (tie) without penalty.\n")
+    print("  7. Quick Math (quickmath, math):")
+    print("     Solve 5 casual arithmetic problems across Easy, Medium, or Hard difficulty.\n")
+    print("  8. Dice Duel (diceduel, dice):")
+    print("     Roll 2d6 against the computer. Play single rolls or best-of-3/5 series. Ties are ties.\n")
+    print("  9. Number Lock (numberlock, lock):")
+    print("     Crack the secret 4-digit unique code in 8 attempts. Receive Exact (🟢),")
+    print("     Wrong Position (🟡), and Miss (⚪) hints. Invalid inputs do not cost an attempt.\n")
+    print("  10. Word Scramble (wordscramble, scramble):")
+    print("      Unscramble jumbled retro words in 3 tries. Type 'hint' for a free clue.\n")
+    print("  11. Take the Last (takethelast, ttl):")
+    print("      Take 1 to 3 tokens from a pile of 15. The player who takes the last token wins!\n")
+    print("  12. Fortune Cookie (fortunecookie, fortune):")
+    print("      Pick an artisan cookie to reveal friendly wisdom and lucky numbers (for fun only).\n")
+    print("  13. The 8 Ball (the8ball, 8ball):")
+    print("      Ask any question and simulate the classic oracle roll for 8 playful answers.\n")
+    print("  14. The Lair's Doom (thelairsdoom, doom):")
+    print("      A choice-based dungeon adventure with HP, inventory, and multiple unique endings.\n")
 
     print_divider(color_scheme)
     print(style_text("SETTINGS & CONFIGURATION", color_scheme, color_type="accent", bold=True))
@@ -202,14 +239,7 @@ def settings_menu(current_settings: Dict[str, str]) -> Dict[str, str]:
 def game_menu(title_style: str, color_scheme: str) -> bool:
     """
     Submenu for selecting and launching games.
-
-    Options:
-    1. Rock Paper Scissors
-    2. First to Fifty
-    3. Guess the Number
-    4. Random Game
-    5. Back to Main Menu
-    6. Quit
+    Presents all registered games, Random Game, Back to Main Menu, and Quit.
 
     Returns:
     - True to return to main menu

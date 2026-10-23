@@ -29,9 +29,20 @@ def create_parser() -> argparse.ArgumentParser:
         epilog=(
             "Quick Examples:\n"
             "  mylair start               Open interactive main menu\n"
-            "  mylair -s rockpaperscissor Directly play Rock Paper Scissors (alias: rps)\n"
-            "  mylair -s firsttofifty     Directly play First to Fifty (alias: f2f)\n"
-            "  mylair -s guessthenumber   Directly play Guess the Number (alias: gtn)\n"
+            "  mylair -s rps              Play Rock Paper Scissors Plus\n"
+            "  mylair -s f2f              Play First to Fifty\n"
+            "  mylair -s gtn              Play Guess the Number\n"
+            "  mylair -s oddoreven        Play Odd or Even\n"
+            "  mylair -s coin             Play Coin Flip Streak\n"
+            "  mylair -s higher           Play Higher or Lower\n"
+            "  mylair -s math             Play Quick Math\n"
+            "  mylair -s dice             Play Dice Duel\n"
+            "  mylair -s lock             Play Number Lock\n"
+            "  mylair -s scramble         Play Word Scramble\n"
+            "  mylair -s takethelast      Play Take the Last\n"
+            "  mylair -s fortune          Play Fortune Cookie\n"
+            "  mylair -s 8ball            Play The 8 Ball\n"
+            "  mylair -s doom             Play The Lair's Doom\n"
             "  mylair help                Show this help message\n"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,

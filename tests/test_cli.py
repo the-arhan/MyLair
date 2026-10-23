@@ -33,15 +33,43 @@ class TestCLI(unittest.TestCase):
     def test_game_lookup_canonical_and_aliases(self):
         """All supported games should be found via canonical names and aliases."""
         test_cases = [
-            ("rockpaperscissor", "rockpaperscissor"),
-            ("rps", "rockpaperscissor"),
-            ("rock-paper-scissors", "rockpaperscissor"),
+            ("rockpaperscissorplus", "rockpaperscissorplus"),
+            ("rps", "rockpaperscissorplus"),
+            ("rockpaperscissor", "rockpaperscissorplus"),
+            ("rock-paper-scissors", "rockpaperscissorplus"),
+            ("rpsplus", "rockpaperscissorplus"),
             ("firsttofifty", "firsttofifty"),
             ("first-to-fifty", "firsttofifty"),
             ("f2f", "firsttofifty"),
             ("guessthenumber", "guessthenumber"),
             ("guess-the-number", "guessthenumber"),
             ("gtn", "guessthenumber"),
+            ("oddoreven", "oddoreven"),
+            ("odd-or-even", "oddoreven"),
+            ("ooe", "oddoreven"),
+            ("coinflipstreak", "coinflipstreak"),
+            ("coin-flip", "coinflipstreak"),
+            ("cfs", "coinflipstreak"),
+            ("higherorlower", "higherorlower"),
+            ("higher-or-lower", "higherorlower"),
+            ("hol", "higherorlower"),
+            ("quickmath", "quickmath"),
+            ("math", "quickmath"),
+            ("diceduel", "diceduel"),
+            ("dice", "diceduel"),
+            ("numberlock", "numberlock"),
+            ("lock", "numberlock"),
+            ("wordscramble", "wordscramble"),
+            ("scramble", "wordscramble"),
+            ("takethelast", "takethelast"),
+            ("ttl", "takethelast"),
+            ("nim", "takethelast"),
+            ("fortunecookie", "fortunecookie"),
+            ("fortune", "fortunecookie"),
+            ("the8ball", "the8ball"),
+            ("8ball", "the8ball"),
+            ("thelairsdoom", "thelairsdoom"),
+            ("doom", "thelairsdoom"),
         ]
         for query, expected_canonical in test_cases:
             game = find_game(query)
@@ -52,9 +80,10 @@ class TestCLI(unittest.TestCase):
         """Unknown games should generate a clear error string with available options."""
         error_msg = format_unknown_game_error("super_mario")
         self.assertIn("Unknown game 'super_mario'", error_msg)
-        self.assertIn("rockpaperscissor", error_msg)
+        self.assertIn("rockpaperscissorplus", error_msg)
         self.assertIn("firsttofifty", error_msg)
         self.assertIn("guessthenumber", error_msg)
+        self.assertIn("thelairsdoom", error_msg)
 
     def test_run_direct_game_unknown(self):
         """run_direct_game should return 1 when given an invalid game name."""
