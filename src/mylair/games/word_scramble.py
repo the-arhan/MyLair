@@ -39,7 +39,7 @@ BUILTIN_WORDS: List[Dict[str, str]] = [
     {"word": "CASTLE", "hint": "Towering medieval fortified fortress with a moat and keep"},
     {"word": "SHADOW", "hint": "Dark silhouette created when light is obstructed by an object"},
     {"word": "DUNGEON", "hint": "Underground labyrinth filled with vaults, traps, and secrets"},
-    {"word": "MYSTERY", "hint": "An enigma or puzzle that demands keen deduction to solve"},
+    {"word": "MYSTERY", "hint": "An enigma or puzzle that demands keen deduction to solve"},``
     {"word": "COSMOS", "hint": "The vast, orderly universe spanning stars and galaxies"},
     {"word": "PIXEL", "hint": "The smallest controllable illuminated dot on a digital screen"},
     {"word": "BINARY", "hint": "Base-2 numeric system consisting solely of zeroes and ones"},
